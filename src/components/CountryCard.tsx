@@ -19,14 +19,14 @@ type CountryCardProps = {
 export const CountryCard = (props: CountryCardProps) => {
   return (
     <Link to={`/detail?country=${props.country.name.common}`}>
-      <div className="col-span-1 light-card-bg shadow-lg mb-10">
+      <div className="col-span-1 light-card-bg shadow-lg mb-10 w-96">
         <div className="divide-x">
           <img
-            className="display:flex"
+            className="object-cover h-48 w-96"
             src={`${props?.country?.flags?.png}`}
             alt={`${props?.country?.flags?.alt}`}
           ></img>
-          <div className="p-1 pl-4">
+          <div className="p-1 pl-4 mt-4">
             <div className="font-nunito-sans font-weight-600">
               Name:{" "}
               <span className="font-weight-300">
