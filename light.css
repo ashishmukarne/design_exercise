@@ -1,0 +1,14 @@
+/* // light.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light theme specific styles */
+body {
+  @apply bg-white text-black;
+  background-color: black;
+}
+
+.light--bg-color{
+    background-color: red;
+}

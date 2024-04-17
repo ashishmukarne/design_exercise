@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark theme specific styles */
+body {
+  @apply bg-gray-900 text-white;
+  background-color: red;
+}

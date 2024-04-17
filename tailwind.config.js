@@ -1,9 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: [
+    "./srd/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./light.css", // Include theme files
+    "./dark.css",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      dark: {
+        backgroundColor: "black"
+      },
+      light: {
+        backgroundColor: "gray"
+      }
+    },
   },
   plugins: [],
 }
-
