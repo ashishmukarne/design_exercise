@@ -12,7 +12,7 @@ const SearchCard = (props: SearchCardProps) => {
 
   return (
     <>
-      <div className="col-span-1 grid-col-end-1">
+      <div className={`col-span-1 grid-col-end-1`}>
         <label className="relative block">
           <span className="sr-only">Search</span>
           <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -38,7 +38,25 @@ const SearchCard = (props: SearchCardProps) => {
       <div className="col-span-1 pr-20 pl-14">
         <form className="max-w-sm mx-auto">
           <select
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className={`
+            bg-gray-50 border 
+            border-gray-300  
+            text-sm rounded-lg 
+            focus:ring-blue-500 focus:border-blue-500 
+            block 
+            w-full 
+            p-2.5 
+            ${
+              theme == "dark"
+                ? `dark:bg-gray-700 
+              dark:border-gray-600 
+              dark:placeholder-gray-400 
+              dark:text-white
+              dark-text
+              dark:focus:ring-blue-500 dark:focus:border-blue-500`
+                : ""
+            }
+            `}
             onChange={(event) => {
               props?.setSelectedRegion(
                 `${event.currentTarget.value}`.toLowerCase()
@@ -46,7 +64,9 @@ const SearchCard = (props: SearchCardProps) => {
             }}
             defaultValue={""}
           >
-            <option value={""}>Choose a country</option>
+            <option className={`${theme}-text`} value={""}>
+              Choose a country
+            </option>
             {props?.regions.map((item: string, index: number) => {
               return (
                 <option value={item} key={index}>
