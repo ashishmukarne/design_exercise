@@ -9,9 +9,11 @@ function App() {
   const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
   };
-  console.log(theme);
+
+ 
   return (
     <>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -19,12 +21,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<CountryDashboard />}></Route>
-            <Route
-              path="/detail"
-              element={
-                <CountryDetailCard/>
-              }
-            />
+            <Route path="/detail" element={<CountryDetailCard />} />
           </Routes>
         </BrowserRouter>
       </ThemeContext.Provider>

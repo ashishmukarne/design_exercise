@@ -25,7 +25,7 @@ const SearchCard = (props: SearchCardProps) => {
               );
             }}
             className={`placeholder:italic  block
-             ${theme}-light-bg w-full  rounded-md py-4 pl-9 pr-3 shadow-sm focus:outline-none
+             ${theme}-light-bg w-full  rounded-md py-4 pl-9 pr-3 shadow-sm focus:outline-none ${theme}-text
                focus:ring-1 sm:text-sm`}
             placeholder="Search for a country..."
             type="text"

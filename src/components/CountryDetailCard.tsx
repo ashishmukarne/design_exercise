@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CountryService } from "../services/ContryService";
 import { LeftArrowIcon } from "../icons/arrow";
 import { Link, useSearchParams } from "react-router-dom";
+import { ThemeContext } from "../themeContext";
 
 export const CountryDetailCard = () => {
   const [countryDetails, setCountryDetails] = useState<any>(null);
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const { theme } = useContext(ThemeContext) || { theme: "light" };
+  
   const loadCountryDetails = async () => {
-    const country = searchParams.get(`country`)
+    const country: string = `${searchParams.get(`country`)}`;
     CountryService.searchByName(country).then((res) => {
-      console.log(res.data[0]);
       setCountryDetails(res.data[0]);
     });
   };
@@ -26,16 +27,16 @@ export const CountryDetailCard = () => {
   };
   return (
     <>
-      <div className="grid grid-cols-12 gap-4 ml-20 mb-10 mt-10 ">
+      <div className={`"grid grid-cols-12 gap-4 pl-20 pb-10 pt-10 ${theme}-bg`}>
         <div className="col-span-1">
           <Link to={`/`}>
-            <button className="drop-shadow-xl pl-8 pr-8 pt-3 pb-3 light-bg flex">
+            <button className={`drop-shadow-xl pl-8 pr-8 pt-3 pb-3 ${theme}-light-bg flex ${theme}-text`}>
               <LeftArrowIcon /> &nbsp; Back
             </button>
           </Link>
         </div>
       </div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 ml-20 mb-10 mt-10 light-bg h-screen">
+      <div className={`grid sm:grid-cols-1 md:grid-cols-3 gap-4 pl-20 pb-10 pt-10 ${theme}-bg h-screen ${theme}-text`}>
         <div className="col-span-1 sm:w-5/6">
           <img
             className="display:flex h-96"
@@ -114,13 +115,18 @@ export const CountryDetailCard = () => {
                   Border Countries:{" "}
                   <span className="font-weight-300 capitalize ml-10">
                     {countryDetails &&
-                      countryDetails.borders?.map((item:string, index:number) => {
-                        return (
-                          <button key={index} className="shadow-md pl-6 pr-6 pt-1 pb-1 light-bg mr-4">
-                            {item}
-                          </button>
-                        );
-                      })}
+                      countryDetails.borders?.map(
+                        (item: string, index: number) => {
+                          return (
+                            <button
+                              key={index}
+                              className={`shadow-md pl-6 pr-6 pt-1 pb-1 ${theme}-light-bg mr-4`}
+                            >
+                              {item}
+                            </button>
+                          );
+                        }
+                      )}
                   </span>
                 </div>
               </div>
@@ -129,7 +135,6 @@ export const CountryDetailCard = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };

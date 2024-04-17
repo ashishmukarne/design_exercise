@@ -10,8 +10,8 @@ export const CountryDashboard = () => {
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
-  const { theme } = useContext(ThemeContext) || { theme: "light" }; // Default to light theme
-  
+  const { theme } = useContext(ThemeContext) || { theme: "light" };
+
   const loadCountries = async () => {
     await CountryService.getAll().then((res) => {
       setCountries(res.data);
@@ -20,25 +20,26 @@ export const CountryDashboard = () => {
 
   const updateFilteredCountries = () => {
     const isSearchingForRegion = selectedRegion.trim().length > 0;
-    const isSearchingForText = selectedRegion.trim().length > 0;
+    const isSearchingForText = searchText.trim().length > 0;
 
     const filteredCountries = countries.filter((country: any) => {
       if (isSearchingForRegion && isSearchingForText) {
         return (
-          country?.region?.toLowerCase()?.indexOf(selectedRegion) > -1 &&
+          country?.region?.toLowerCase() == selectedRegion?.toLowerCase() &&
           country?.name?.common
             ?.toLowerCase()
             ?.indexOf(searchText.toLowerCase()) > -1
         );
       } else if (isSearchingForRegion && !isSearchingForText) {
-        return country?.region.indexOf(selectedRegion) > -1;
+        return country?.region.toLowerCase() == selectedRegion?.toLowerCase();
       } else {
-        country?.name?.common
-          ?.toLowerCase()
-          ?.indexOf(searchText.toLowerCase()) > -1;
+        return (
+          country?.name?.common
+            ?.toLowerCase()
+            ?.indexOf(searchText.toLowerCase()) > -1
+        );
       }
     });
-
     setFilteredCountries(filteredCountries);
   };
 
@@ -47,7 +48,6 @@ export const CountryDashboard = () => {
     countries.forEach((country: any) => {
       regionMap[`${country?.region}`] = [country];
     });
-    console.log(regionMap);
     setRegions(Object.keys(regionMap));
   }, [countries]);
 
@@ -65,15 +65,19 @@ export const CountryDashboard = () => {
 
   return (
     <>
-      <div className={`grid grid-cols-4 gap-4 pl-20 pb-10 pt-10 ${theme}-bg`}>
+      <div
+        className={`grid grid-cols-4 gap-4 pl-20 pb-10 pt-10 ${theme}-light-bg shadow-md`}
+      >
         <SearchCard
           setSearchText={setSearchText}
           setSelectedRegion={setSelectedRegion}
           regions={regions}
         ></SearchCard>
       </div>
-      <div className={`grid md:grid-cols-4 sm:grid-cols-1 gap-4 pl-20 ${theme}-bg`}>
-        {searchText.trim().length > 0
+      <div
+        className={`grid md:grid-cols-4 sm:grid-cols-1 gap-4 pl-20 ${theme}-bg`}
+      >
+        {searchText.trim().length > 0 || selectedRegion.trim().length > 0
           ? filteredCountries.map((country: any, index: number) => {
               return <CountryCard key={index} country={country}></CountryCard>;
             })

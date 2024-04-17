@@ -3,13 +3,11 @@ import { ThemeContext } from "../themeContext";
 
 export const Header = () => {
   const { theme } = useContext(ThemeContext) || { theme: "light" }; // Default to light theme
-  console.log("theme: ", theme);
-
   return (
     <div
-      className={`${theme}-bg-color font-sans ${theme}-bg pb-10 pl-24 text-left`}
+      className={`${theme}-bg-color shadow-2xl font-sans ${theme}-light-bg pb-10 pl-24 text-left`}
     >
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-4 ">
         <div className={`font-sans inline-block text-center font-bold ${theme}-text align-middle pt-9 `}>
           Where in the World?
         </div>

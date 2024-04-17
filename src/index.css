@@ -30,18 +30,18 @@
 - White (Dark Mode Text & Light Mode Elements): hsl(0, 0%, 100%) */
 
 .light-bg {
-  background-color: hsl(0, 0%, 52%)
+  background-color: hsl(0deg 0% 98.04%);
 }
 .light-light-bg {
-  background-color: hsl(0, 0%, 98%)
+  background-color: hsl(0deg 0% 100%);
 }
 .light-text {
-  color:  hsl(200, 15%, 8%);
+  color: hsl(200, 15%, 8%);
 }
 
 .dark-bg {
   /* background-color: hsl(209, 23%, 22%); */
-  background-color: hsl(204.55deg 25.58% 16.86%)
+  background-color: hsl(204.55deg 25.58% 16.86%);
 }
 
 .dark-light-bg {
@@ -50,7 +50,7 @@
 }
 
 .dark-text {
-  color:hsl(0, 0%, 100%)
+  color: hsl(0, 0%, 100%);
 }
 
 .light-card-bg {
