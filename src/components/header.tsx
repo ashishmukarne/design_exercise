@@ -7,8 +7,7 @@ export const Header = () => {
 
   return (
     <div className={`${theme}-bg-color bg-gray-200 dark:bg-gray-800`}>
-      {/* Apply conditional classes */}
-      {/* Component content */}
+      Where in the World?
     </div>
   );
 };
