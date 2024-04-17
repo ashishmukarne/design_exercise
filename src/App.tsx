@@ -9,10 +9,9 @@ function App() {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
-
+  console.log(theme);
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {/* Your application components */}
       <Header></Header>
       <CountryDashboard></CountryDashboard>
     </ThemeContext.Provider>

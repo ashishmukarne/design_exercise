@@ -22,25 +22,39 @@ const SearchCard = (props: SearchCardProps) => {
               );
             }}
             className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-            placeholder="Search for anything..."
+            placeholder="Search for a country..."
             type="text"
             name="search"
           />
         </label>
       </div>
-      <div className="col-span-1 grid-col-end-1">
-        <select
-          onChange={(event) => {
-            props?.setSelectedRegion(
-              `${event.currentTarget.value}`.toLowerCase()
-            );
-          }}
-        >
-          {props?.regions.map((item: string, index: number) => {
-            return <option key={index}>{item}</option>;
-          })}
-        </select>
+      <div className="col-span-2"></div>
+      
+      <div className="col-span-1 pr-20 pl-14">
+        <form className="max-w-sm mx-auto">
+           
+          <select
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={(event) => {
+              props?.setSelectedRegion(
+                `${event.currentTarget.value}`.toLowerCase()
+              );
+            }}
+          >
+            <option value={""} selected>
+              Choose a country
+            </option>
+            {props?.regions.map((item: string, index: number) => {
+              return (
+                <option value={item} key={index}>
+                  {item}
+                </option>
+              );
+            })}
+          </select>
+        </form>
       </div>
+      
     </>
   );
 };
