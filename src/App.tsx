@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <Header></Header>
+        <Header toggleTheme={toggleTheme}></Header>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<CountryDashboard />}></Route>
