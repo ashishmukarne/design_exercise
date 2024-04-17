@@ -1,44 +1,47 @@
 import { useEffect, useState } from "react";
-import { CountryCard } from "./CountryCard";
+import {CountryCard} from "./CountryCard";
 import { CountryService } from "../services/ContryService";
-import { SearchCard } from "./SearchCard";
+import SearchCard from "./SearchCard";
 
 export const CountryDashboard = () => {
   const [countries, setCountries] = useState([]);
   const [regions, setRegions] = useState<string[]>([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
 
   const loadCountries = async () => {
     await CountryService.getAll().then((res) => {
-      //   console.log("res: ", res.data);
-      console.log("updating countries");
       setCountries(res.data);
     });
-    // console.log("countries: ", countries);
   };
 
   const updateFilteredCountries = () => {
-    const filteredCountries = countries.filter((country: any) => {
-      console.log(
-        searchText,
-        country?.name?.common,
-        country?.name?.common?.indexOf(searchText)
-      );
+    const isSearchingForRegion = selectedRegion.trim().length > 0;
+    const isSearchingForText = selectedRegion.trim().length > 0;
 
-      return (
+    const filteredCountries = countries.filter((country: any) => {
+      if (isSearchingForRegion && isSearchingForText) {
+        return (
+          country?.region?.toLowerCase()?.indexOf(selectedRegion) > -1 &&
+          country?.name?.common
+            ?.toLowerCase()
+            ?.indexOf(searchText.toLowerCase()) > -1
+        );
+      } else if (isSearchingForRegion && !isSearchingForText) {
+        return country?.region.indexOf(selectedRegion) > -1;
+      } else {
         country?.name?.common
           ?.toLowerCase()
-          ?.indexOf(searchText.toLowerCase()) > -1
-      );
+          ?.indexOf(searchText.toLowerCase()) > -1;
+      }
     });
+
     setFilteredCountries(filteredCountries);
   };
 
   useEffect(() => {
-    console.log("countries changed: ", countries);
     const regionMap: any = {};
-
     countries.forEach((country: any) => {
       regionMap[`${country?.region}`] = [country];
     });
@@ -51,13 +54,21 @@ export const CountryDashboard = () => {
   }, [searchText]);
 
   useEffect(() => {
+    updateFilteredCountries();
+  }, [selectedRegion]);
+
+  useEffect(() => {
     loadCountries();
   }, []);
 
   return (
     <>
       <div className="grid grid-cols-4 gap-4 ml-20">
-        <SearchCard setSearchText={setSearchText} regions={regions}></SearchCard>
+        <SearchCard
+          setSearchText={setSearchText}
+          setSelectedRegion={setSelectedRegion}
+          regions={regions}
+        ></SearchCard>
       </div>
       <div className="grid grid-cols-4 gap-4 ml-20">
         {searchText.trim().length > 0

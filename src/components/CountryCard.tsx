@@ -1,6 +1,19 @@
 import React from "react";
 
-export const CountryCard = (props: any) => {
+type CountryCardProps = {
+  country: {
+    flags: {
+      png: string;
+    };
+    name: {
+      common: string;
+    };
+    population: number;
+    region: string;
+  };
+};
+
+export const CountryCard = (props: CountryCardProps) => {
   return (
     <div className="col-span-1">
       <div className="divide-x">
