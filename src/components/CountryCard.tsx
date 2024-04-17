@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { ThemeContext } from "../themeContext";
 
 type CountryCardProps = {
   country: {
@@ -17,17 +18,21 @@ type CountryCardProps = {
 };
 
 export const CountryCard = (props: CountryCardProps) => {
+  const { theme } = useContext(ThemeContext) || { theme: "light" }; // Default to light theme
+
   return (
     <Link to={`/detail?country=${props.country.name.common}`}>
-      <div className="col-span-1 light-card-bg shadow-lg mb-10 w-96">
+      <div
+        className={`col-span-1 light-card-bg shadow-lg mb-10 w-96 ${theme}-light-bg ${theme}-text`}
+      >
         <div className="divide-x">
           <img
             className="object-cover h-48 w-96"
             src={`${props?.country?.flags?.png}`}
             alt={`${props?.country?.flags?.alt}`}
           ></img>
-          <div className="p-1 pl-4 mt-4">
-            <div className="font-nunito-sans font-weight-600">
+          <div className={` pl-4 pt-4 ${theme}-light-bg border-width pb-10`}>
+            <div className={`font-nunito-sans font-weight-600`}>
               Name:{" "}
               <span className="font-weight-300">
                 {props?.country?.name?.common}

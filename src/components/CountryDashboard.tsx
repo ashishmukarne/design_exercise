@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import {CountryCard} from "./CountryCard";
+import { useContext, useEffect, useState } from "react";
+import { CountryCard } from "./CountryCard";
 import { CountryService } from "../services/ContryService";
 import SearchCard from "./SearchCard";
+import { ThemeContext } from "../themeContext";
 
 export const CountryDashboard = () => {
   const [countries, setCountries] = useState([]);
@@ -9,7 +10,8 @@ export const CountryDashboard = () => {
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
-
+  const { theme } = useContext(ThemeContext) || { theme: "light" }; // Default to light theme
+  
   const loadCountries = async () => {
     await CountryService.getAll().then((res) => {
       setCountries(res.data);
@@ -63,14 +65,14 @@ export const CountryDashboard = () => {
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-4 ml-20 mb-10 mt-10 light-bg">
+      <div className={`grid grid-cols-4 gap-4 pl-20 pb-10 pt-10 ${theme}-bg`}>
         <SearchCard
           setSearchText={setSearchText}
           setSelectedRegion={setSelectedRegion}
           regions={regions}
         ></SearchCard>
       </div>
-      <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-4 ml-20">
+      <div className={`grid md:grid-cols-4 sm:grid-cols-1 gap-4 pl-20 ${theme}-bg`}>
         {searchText.trim().length > 0
           ? filteredCountries.map((country: any, index: number) => {
               return <CountryCard key={index} country={country}></CountryCard>;

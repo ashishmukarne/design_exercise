@@ -6,7 +6,7 @@ import { CountryDashboard } from "./components/CountryDashboard";
 import { CountryDetailCard } from "./components/CountryDetailCard";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
