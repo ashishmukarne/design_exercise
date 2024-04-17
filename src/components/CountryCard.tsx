@@ -5,6 +5,7 @@ type CountryCardProps = {
   country: {
     flags: {
       png: string;
+      alt: string;
     };
     name: {
       common: string;
@@ -23,6 +24,7 @@ export const CountryCard = (props: CountryCardProps) => {
           <img
             className="display:flex"
             src={`${props?.country?.flags?.png}`}
+            alt={`${props?.country?.flags?.alt}`}
           ></img>
           <div className="p-1 pl-4">
             <div className="font-nunito-sans font-weight-600">

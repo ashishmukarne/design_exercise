@@ -35,8 +35,8 @@ export const CountryDetailCard = () => {
           </Link>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 ml-20 mb-10 mt-10 light-bg h-screen">
-        <div className="col-span-1">
+      <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-4 ml-20 mb-10 mt-10 light-bg h-screen">
+        <div className="col-span-1 sm:w-5/6">
           <img
             className="display:flex h-96"
             src={`${countryDetails?.flags?.png}`}
@@ -129,9 +129,7 @@ export const CountryDetailCard = () => {
           </div>
         </div>
       </div>
-      <div className="col-span-1 light-card-bg shadow-lg mb-10">
-        <div className="divide-x"></div>
-      </div>
+      
     </>
   );
 };
