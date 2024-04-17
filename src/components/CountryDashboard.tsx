@@ -75,7 +75,7 @@ export const CountryDashboard = () => {
         ></SearchCard>
       </div>
       <div
-        className={`grid md:grid-cols-4 sm:grid-cols-1 gap-4 pl-20 ${theme}-bg`}
+        className={`grid md:grid-cols-4 sm:grid-cols-1 gap-4 pl-20 ${theme}-bg min-h-screen`}
       >
         {searchText.trim().length > 0 || selectedRegion.trim().length > 0
           ? filteredCountries.map((country: any, index: number) => {
