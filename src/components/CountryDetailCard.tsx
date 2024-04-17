@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CountryService } from "../services/ContryService";
-import { LeftArrowIcon } from "../icons/arrow";
+import { LeftArrowIcon } from "../icons/icons";
 import { Link, useSearchParams } from "react-router-dom";
 import { ThemeContext } from "../themeContext";
 

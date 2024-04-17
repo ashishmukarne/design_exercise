@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../themeContext";
-import { DarkMoonIcon, WhiteMoonIcon } from "../icons/arrow";
+import { DarkMoonIcon, WhiteMoonIcon } from "../icons/icons";
 
 type HeaderProps = {
   toggleTheme: () => any;
