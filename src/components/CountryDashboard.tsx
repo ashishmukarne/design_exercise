@@ -66,7 +66,7 @@ export const CountryDashboard = () => {
   return (
     <>
       <div
-        className={`grid grid-cols-4 gap-4 pl-20 pb-10 pt-10 ${theme}-light-bg shadow-md`}
+        className={`grid grid-cols-4 gap-4 pl-20 pb-10 pt-10 ${theme}-bg shadow-md`}
       >
         <SearchCard
           setSearchText={setSearchText}
