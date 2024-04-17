@@ -1,8 +1,8 @@
 import React from "react";
 
 type SearchCardProps = {
-  setSearchText: (arg0: string) => {};
-  setSelectedRegion: (arg0: string) => {};
+  setSearchText: (arg0: string) => any;
+  setSelectedRegion: (arg0: string) => any;
   regions: string[];
 };
 

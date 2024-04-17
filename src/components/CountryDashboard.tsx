@@ -63,14 +63,14 @@ export const CountryDashboard = () => {
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-4 ml-20 mb-10 mt-10">
+      <div className="grid grid-cols-4 gap-4 ml-20 mb-10 mt-10 light-bg">
         <SearchCard
           setSearchText={setSearchText}
           setSelectedRegion={setSelectedRegion}
           regions={regions}
         ></SearchCard>
       </div>
-      <div className="grid grid-cols-4 gap-4 ml-20">
+      <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-4 ml-20">
         {searchText.trim().length > 0
           ? filteredCountries.map((country: any, index: number) => {
               return <CountryCard key={index} country={country}></CountryCard>;

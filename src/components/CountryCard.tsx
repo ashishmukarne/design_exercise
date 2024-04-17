@@ -16,7 +16,7 @@ type CountryCardProps = {
 
 export const CountryCard = (props: CountryCardProps) => {
   return (
-    <div className="col-span-1 light-gb">
+    <div className="col-span-1 light-card-bg shadow-lg mb-10">
       <div className="divide-x">
         <img
           className="display:flex"
