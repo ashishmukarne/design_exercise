@@ -40,8 +40,9 @@ const SearchCard = (props: SearchCardProps) => {
                 `${event.currentTarget.value}`.toLowerCase()
               );
             }}
+            defaultValue={""}
           >
-            <option value={""} selected>
+            <option value={""}>
               Choose a country
             </option>
             {props?.regions.map((item: string, index: number) => {
